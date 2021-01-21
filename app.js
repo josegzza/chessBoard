@@ -28,6 +28,9 @@ var InitDemo = function () {
 	console.log('This is working');
 
 	var canvas = document.getElementById('game-surface');
+  	canvas.width  = window.innerWidth *.95;
+	canvas.height = window.innerHeight *.90;
+	
 	var gl = canvas.getContext('webgl');
 
 	if (!gl) {
@@ -39,8 +42,8 @@ var InitDemo = function () {
 		alert('Your browser does not support WebGL');
 	}
 
-	gl.clearColor(0.75, 0.85, 0.8, 1.0);
-	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+	//gl.clearColor(0.75, 0, 0.8, 1.0);
+	//gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
 	//
 	// Create shaders
