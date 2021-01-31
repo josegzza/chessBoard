@@ -1,7 +1,8 @@
 # Chess Board 
+Interacting chess board with more representative plays.
+Using webGL/Three.js technology (HTML, CSS, Javascript).
+
+# Run
 To run the script you should run:
 - python3 -m http.server 
-
-
-Interacting model of chess board with shadow, texture and animation.
-Using webGL technology (HTML, Javascript).
+- Open http://localhost:8080 to view your project.
