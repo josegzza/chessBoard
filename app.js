@@ -157,12 +157,22 @@ initialBoard();
 
 //Load piece
 function createPiece(color, name, pos, dicName){
-	const mtlLoader = new THREE.MTLLoader();
-    mtlLoader.load('./assets/objects/'+color+'.mtl', (mtl) => {
-      mtl.preload();
-	  const objLoader = new THREE.OBJLoader();
-      objLoader.setMaterials(mtl);
-      objLoader.load('./assets/objects/'+name+'.obj', (object) => {
+	const objLoader = new THREE.OBJLoader();
+    objLoader.load('./assets/objects/'+name+'.obj', (object) => {
+	
+	if(color=="white"){
+		color = 0xFFFFFF
+	}
+	else{
+		color = 0x444444
+	}
+		
+	object.traverse( function (obj) {
+		if (obj.isMesh){
+			obj.material.color.set(color);
+		}
+	} );
+				
 		   Pieces[dicName] = object;
 		   Pieces[dicName].position.x = boardPositions[pos].x;
 		   Pieces[dicName].position.z = boardPositions[pos].z;
@@ -173,7 +183,6 @@ function createPiece(color, name, pos, dicName){
 		   boardPositions[pos].piece = dicName;
 			scene.add(Pieces[dicName])
 	  });
-	});
 }
 
 //Move piece with delay for the animation.
@@ -313,7 +322,6 @@ function init()
     camera.position.y = 250;
     camera.position.z = 400;
     camera.lookAt (new THREE.Vector3(0,0,0));
-
     controls = new THREE.OrbitControls (camera, renderer.domElement);
 	
 	//View helper
